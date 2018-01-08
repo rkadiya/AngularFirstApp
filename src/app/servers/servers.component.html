@@ -1,0 +1,42 @@
+<label>Server name</label>
+<input
+  type="text"
+  class="form-control"
+  [(ngModel)]="serverName">
+<button
+  class="btn btn-primary"
+  [disabled]="!allowNewServer"
+  (click)="onCreateServer()">Add Server</button>
+<br>
+<!--<label>Username</label>-->
+<!--<input-->
+  <!--type="text"-->
+  <!--class="form-control"-->
+  <!--[(ngModel)]="userName">-->
+<!--<button-->
+  <!--class="btn btn-primary"-->
+  <!--[disabled]="userName === ''"-->
+  <!--(click)="onEmptyUser()">Reset</button>-->
+<!--<p>User name is : {{ userName }}</p>-->
+<!--<p [innerText]="allowNewServer"></p>-->
+<!--<p>{{ serverCreationStatus }}</p>-->
+<p *ngIf="serverCreated">Server was created, server name is {{ serverName }}</p>
+<ng-template #noServer>
+  <p>No server is created!!!</p>
+</ng-template>
+<app-server *ngFor="let server of servers"></app-server>
+
+<br>
+<br>
+
+<button
+  class="btn btn-primary"
+  (click)="toggleDisplayDetails()">Display Details</button>
+<p *ngIf="displayDetails">Secret Password = tuna</p>
+<div
+  [ngStyle]="{backgroundColor:i >= 4 ? 'blue' : 'transparent'}"
+  [ngClass]="{fiveGreater: i >= 4}"
+  *ngFor="let detail of displayDetailsArray; let i = index">{{detail}}</div>
+<br>
+<br>
+
